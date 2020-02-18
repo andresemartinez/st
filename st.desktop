@@ -6,6 +6,6 @@ Exec=st -t "Simple Terminal" -n "Simple Terminal"
 Terminal=false
 Type=Application
 Encoding=UTF-8
-Icon=/usr/share/st/icon.png
+Icon=/usr/local/share/st/icon.png
 Categories=System;TerminalEmulator;
 Keywords=shell;prompt;command;commandline;cmd;
