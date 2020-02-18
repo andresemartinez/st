@@ -1,6 +1,6 @@
 # Andres's build of st - the simple (suckless) terminal
 
-The [suckless terminal (st)](https://st.suckless.org/) with some additional features that make it literally the best terminal emulator ever:
+The [suckless terminal (st)](https://st.suckless.org/) with some additional features that make's it awesome. Based on version 0.8.2.
 
 ## Customzations
 + Added desktop entry for desktop environments
@@ -12,10 +12,9 @@ The [suckless terminal (st)](https://st.suckless.org/) with some additional feat
 + [alpha focus highlight](https://st.suckless.org/patches/alpha_focus_highlight/)
 + [scrollback](https://st.suckless.org/patches/scrollback/)
 + [solarized](https://st.suckless.org/patches/solarized/)
-+ updated to latest version 0.8.2
 
 
-## Installation for newbs
+## Installation
 
 ```
 git clone https://github.com/andresemartinez/st.git
