@@ -49,11 +49,14 @@ install: st
 	chmod 644 $(DESTDIR)$(MANPREFIX)/man1/st.1
 	tic -sx st.info
 	@echo Please see the README file regarding the terminfo entry of st.
+	mkdir -p /usr/share/st/
+	cp -f icon.png /usr/share/st
 	cp -f st.desktop /usr/share/applications
 
 uninstall:
 	rm -f $(DESTDIR)$(PREFIX)/bin/st
 	rm -f $(DESTDIR)$(MANPREFIX)/man1/st.1
 	rm -f /usr/share/applications/st.desktop
+	rm -f /usr/share/st
 
 .PHONY: all options clean dist install uninstall
