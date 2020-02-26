@@ -766,15 +766,29 @@ xloadcolor(int i, const char *name, Color *ncolor)
 void
 xloadalpha(void)
 {
+    float usedAlpha;
+
     /* set alpha value of bg color */
     if (opt_alpha)
         alpha = strtof(opt_alpha, NULL);
 
-    float const usedAlpha = focused ? alpha : alphaUnfocussed;
+    if (useAlpha) {
+        usedAlpha = focused ? alpha : alphaUnfocussed;
+    } else {
+        usedAlpha = 1;
+    }
 
     dc.col[defaultbg].color.alpha = (unsigned short)(0xffff * usedAlpha);
     dc.col[defaultbg].pixel &= 0x00FFFFFF;
     dc.col[defaultbg].pixel |= (unsigned char)(0xff * usedAlpha) << 24;
+}
+
+void
+xtogglealpha(void)
+{
+    useAlpha = useAlpha == 1 ? 0 : 1;
+    xloadalpha();
+    redraw();
 }
 
 void

@@ -85,6 +85,7 @@ void draw(void);
 void newterm(const Arg *);
 void kscrolldown(const Arg *);
 void kscrollup(const Arg *);
+void toggleAlpha(const Arg *);
 
 void printscreen(const Arg *);
 void printsel(const Arg *);
@@ -129,3 +130,4 @@ extern unsigned int defaultfg;
 extern unsigned int defaultbg;
 extern float alpha;
 extern float alphaUnfocussed;
+extern char useAlpha;

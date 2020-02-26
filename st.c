@@ -1083,6 +1083,13 @@ static char *getcwd_by_pid(pid_t pid) {
 }
 
 void
+toggleAlpha(const Arg* a)
+{
+    printf("Shortcut recognized");
+    xtogglealpha();
+}
+
+void
 kscrolldown(const Arg* a)
 {
 	int n = a->i;
