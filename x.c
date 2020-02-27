@@ -61,6 +61,7 @@ static void zoom(const Arg *);
 static void zoomabs(const Arg *);
 static void zoomreset(const Arg *);
 static void ttysend(const Arg *);
+static void togglealpha(const Arg *);
 
 /* config.h for applying patches and the configuration. */
 #include "config.h"
@@ -158,6 +159,7 @@ static void cresize(int, int);
 static void xresize(int, int);
 static void xhints(void);
 static int xloadcolor(int, const char *, Color *);
+static void xloadalpha(void);
 static int xloadfont(Font *, FcPattern *);
 static void xloadfonts(char *, double);
 static void xunloadfont(Font *);
@@ -330,6 +332,14 @@ void
 ttysend(const Arg *arg)
 {
 	ttywrite(arg->s, strlen(arg->s), 1);
+}
+
+void
+togglealpha(const Arg *arg)
+{
+    alphaOn = !alphaOn;
+    xloadalpha();
+    redraw();
 }
 
 int
@@ -766,16 +776,25 @@ xloadcolor(int i, const char *name, Color *ncolor)
 void
 xloadalpha(void)
 {
-    /* set alpha value of bg color */
-    if (opt_alpha)
-        alpha = strtof(opt_alpha, NULL);
+    float usedAlpha;
 
-    float const usedAlpha = focused ? alpha : alphaUnfocussed;
+		if (alphaOn) {
+
+	    /* set alpha value of bg color */
+	    if (opt_alpha)
+	        alpha = strtof(opt_alpha, NULL);
+
+      usedAlpha = focused ? alpha : alphaUnfocussed;
+
+    } else {
+        usedAlpha = 1;
+    }
 
     dc.col[defaultbg].color.alpha = (unsigned short)(0xffff * usedAlpha);
     dc.col[defaultbg].pixel &= 0x00FFFFFF;
     dc.col[defaultbg].pixel |= (unsigned char)(0xff * usedAlpha) << 24;
 }
+
 
 void
 xloadcols(void)

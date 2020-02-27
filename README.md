@@ -3,8 +3,9 @@
 The [suckless terminal (st)](https://st.suckless.org/) with some additional features that make's it awesome.
 Based on version 0.8.2.
 
-## Features
+## Unique Features
 + Desktop entry for desktop environments
++ Alpha toggle (Alt + a)
 
 ## Included st patches
 
@@ -26,5 +27,6 @@ git clone https://github.com/andresemartinez/st.git
 cd st
 sudo make install
 ```
+
 ## Customization
 Aditional customazation can be done in the config.h file. This requires re-compiling.
