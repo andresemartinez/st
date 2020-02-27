@@ -129,4 +129,4 @@ extern unsigned int defaultfg;
 extern unsigned int defaultbg;
 extern float alpha;
 extern float alphaUnfocussed;
-extern char useAlpha;
+extern char alphaOn;

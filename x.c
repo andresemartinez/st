@@ -159,6 +159,7 @@ static void cresize(int, int);
 static void xresize(int, int);
 static void xhints(void);
 static int xloadcolor(int, const char *, Color *);
+static void xloadalpha(void);
 static int xloadfont(Font *, FcPattern *);
 static void xloadfonts(char *, double);
 static void xunloadfont(Font *);
@@ -331,6 +332,14 @@ void
 ttysend(const Arg *arg)
 {
 	ttywrite(arg->s, strlen(arg->s), 1);
+}
+
+void
+togglealpha(const Arg *arg)
+{
+    alphaOn = !alphaOn;
+    xloadalpha();
+    redraw();
 }
 
 int
@@ -769,12 +778,14 @@ xloadalpha(void)
 {
     float usedAlpha;
 
-    /* set alpha value of bg color */
-    if (opt_alpha)
-        alpha = strtof(opt_alpha, NULL);
+		if (alphaOn) {
 
-    if (useAlpha) {
-        usedAlpha = focused ? alpha : alphaUnfocussed;
+	    /* set alpha value of bg color */
+	    if (opt_alpha)
+	        alpha = strtof(opt_alpha, NULL);
+
+      usedAlpha = focused ? alpha : alphaUnfocussed;
+
     } else {
         usedAlpha = 1;
     }
@@ -784,13 +795,6 @@ xloadalpha(void)
     dc.col[defaultbg].pixel |= (unsigned char)(0xff * usedAlpha) << 24;
 }
 
-void
-togglealpha(const Arg *arg)
-{
-    useAlpha = useAlpha == 1 ? 0 : 1;
-    xloadalpha();
-    redraw();
-}
 
 void
 xloadcols(void)
