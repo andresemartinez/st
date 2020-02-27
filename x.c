@@ -61,6 +61,7 @@ static void zoom(const Arg *);
 static void zoomabs(const Arg *);
 static void zoomreset(const Arg *);
 static void ttysend(const Arg *);
+static void togglealpha(const Arg *);
 
 /* config.h for applying patches and the configuration. */
 #include "config.h"
@@ -784,7 +785,7 @@ xloadalpha(void)
 }
 
 void
-xtogglealpha(void)
+togglealpha(const Arg *arg)
 {
     useAlpha = useAlpha == 1 ? 0 : 1;
     xloadalpha();
